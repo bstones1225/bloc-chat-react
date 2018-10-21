@@ -18,7 +18,7 @@ class RoomList extends Component {
     return (
 
       this.state.rooms.map((room, index) =>(
-        <p>{room.name}</p>
+        <p key={index}>{room.name}</p>
       )))
   }
 }
