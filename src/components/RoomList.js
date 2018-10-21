@@ -30,6 +30,12 @@ handleSubmit(event) {
 
   render(){
     return (
+ checkpoint-1-blocchat
+
+      this.state.rooms.map((room, index) =>(
+        <p key={index}>{room.name}</p>
+      )))
+
       <div>
       {
         this.state.rooms.map((room, index) =>(
@@ -50,6 +56,7 @@ handleSubmit(event) {
 
 
     );
+ master
   }
 }
 
