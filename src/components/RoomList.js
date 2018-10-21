@@ -25,7 +25,7 @@ handleSubmit(event) {
          this.roomsRef.push({
          name: this.state.newRoom
          });
-         this.state.newRoom="";
+         this.setState({newRoom: ""});
        }
 
 
