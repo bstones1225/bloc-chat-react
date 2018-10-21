@@ -25,18 +25,13 @@ handleSubmit(event) {
          this.roomsRef.push({
          name: this.state.newRoom
          });
+         this.state.newRoom="";
        }
 
 
   render(){
     return (
- checkpoint-1-blocchat
-
-      this.state.rooms.map((room, index) =>(
-        <p key={index}>{room.name}</p>
-      )))
-
-      <div>
+       <div>
       {
         this.state.rooms.map((room, index) =>(
         <p>{room.name}</p>
@@ -46,7 +41,7 @@ handleSubmit(event) {
     <form onSubmit={this.handleSubmit} >
       <label>
       Name:
-      <input type="text" value={this.state.newRoom} onChange={this.handleChange} />
+      <input type="text" value={this.state.newRoom} onChange={this.handleChange} placeholder="Room List"/>
       </label>
       <input type="submit" value="Submit" />
     </form>
@@ -56,7 +51,6 @@ handleSubmit(event) {
 
 
     );
- master
   }
 }
 
