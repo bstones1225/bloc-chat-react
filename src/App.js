@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { Route, Link } from 'react-router-dom';
 import './App.css';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList';
+import MessageList from './components/MessageList';
 
 var config = {
   apiKey: "AIzaSyDQZNrNM29rmk1gaTaEojzjFYH_ILXjDb4",
@@ -15,18 +17,40 @@ firebase.initializeApp(config);
 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeRoom: " "
+    };
+  }
+  setRoom=(room)=>{
+    console.log("Inside set Room " + room)
+    this.setState({activeRoom: room})
+    console.log(this.state.activeRoom)
+    console.log("After set Room " + this.state.activeRoom)
+  }
+
   render() {
     return (
       <div className="App">
       <header>
-        <nav>
+      <h1>Bloc Chat</h1>
+      <nav>
+        <RoomList
+        firebase={firebase}
+        setRoom={this.setRoom} />
+      </nav>
 
-        </nav>
-        <h1>Bloc Chat</h1>
       </header>
       <main>
-        <RoomList firebase={firebase}/>
-      </main>
+        <Route path="/room/:roomId" render={() =>
+                <MessageList
+                 firebase={firebase}
+                 activeRoom={this.state.activeRoom}
+                />
+               }
+              />
+        </main>
       </div>
     );
   }
