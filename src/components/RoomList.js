@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Route, Link } from 'react-router-dom';
+
 
 class RoomList extends Component {
   constructor(props) {
@@ -10,6 +12,7 @@ class RoomList extends Component {
     this.roomsRef = this.props.firebase.database().ref('rooms');
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.activeRoom = this.props.activeRoom;
   }
   componentDidMount() {
        this.roomsRef.on('child_added', snapshot => {
@@ -31,10 +34,10 @@ handleSubmit(event) {
 
   render(){
     return (
-       <div>
+       <section className="rooms-list">
       {
         this.state.rooms.map((room, index) =>(
-        <p key={index}>{room.name}</p>
+        <Link to="/room/:roomId" key={room.key} onClick = {()=>this.props.setRoom(room.roomId)}>{room.roomId}</Link>
       ))
     }
 
@@ -45,7 +48,7 @@ handleSubmit(event) {
       </label>
       <input type="submit" value="Submit" />
     </form>
-    </div>
+    </section>
 
 
 
