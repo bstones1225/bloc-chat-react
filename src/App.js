@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
 import './App.css';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList';
 import MessageList from './components/MessageList';
+import User from './components/User';
 
 var config = {
   apiKey: "AIzaSyDQZNrNM29rmk1gaTaEojzjFYH_ILXjDb4",
@@ -20,14 +20,21 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeRoom: " "
+      activeRoom: " ",
+      user:""
     };
   }
   setRoom=(room)=>{
-    console.log("Inside set Room " + room)
+
     this.setState({activeRoom: room})
-    console.log(this.state.activeRoom)
-    console.log("After set Room " + this.state.activeRoom)
+
+  }
+  setUser=(user)=>{
+
+    this.setState({
+      user: user
+    })
+
   }
 
   render() {
@@ -43,12 +50,16 @@ class App extends Component {
 
       </header>
       <main>
-        <Route path="/room/:roomId" render={() =>
+
                 <MessageList
                  firebase={firebase}
                  activeRoom={this.state.activeRoom}
                 />
-               }
+
+              <User
+              firebase={firebase}
+              user={this.state.user}
+              setUser={this.setUser.bind(this)}
               />
         </main>
       </div>
