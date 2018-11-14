@@ -23,18 +23,19 @@ class MessageList extends Component {
      }
 
 handleChange(event) {
+
          this.setState({newMsg: event.target.value});
          }
 handleSubmit(event) {
              event.preventDefault();
-             console.log(this.state.newMsg);
-             console.log(this.props.user.displayName);
-             console.log(this.props.activeRoom);
+
+             if (this.props.activeRoom !== " "){
+
              this.messagesRef.push({
              content: this.state.newMsg,
              username: this.props.user.displayName,
              roomId: this.props.activeRoom
-             });
+           })};
             this.setState({newMsg: ""});
            }
  render(){
