@@ -26,7 +26,7 @@ class RoomList extends Component {
 handleSubmit(event) {
          event.preventDefault();
          this.roomsRef.push({
-         name: this.state.newRoom
+         roomId: this.state.newRoom
          });
          this.setState({newRoom: ""});
        }
@@ -37,7 +37,7 @@ handleSubmit(event) {
        <section className="rooms-list">
       {
         this.state.rooms.map((room, index) =>(
-        <Link to="/room/:roomId" key={room.key} onClick = {()=>this.props.setRoom(room.roomId)}>{room.roomId}</Link>
+        <Link to={`/room/${room.roomId}`} key={room.key} onClick = {()=>this.props.setRoom(room.roomId)}>{room.roomId}</Link>
       ))
     }
 
