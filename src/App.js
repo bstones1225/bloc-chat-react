@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import * as firebase from 'firebase';
-import RoomList from './components/RoomList';
+import Rooms from './components/Rooms';
+import RoomForm from './components/RoomForm';
+import DeleteRoom from './components/DeleteRoom';
 import MessageList from './components/MessageList';
 import MessageForm from './components/MessageForm';
 import User from './components/User';
@@ -39,6 +41,10 @@ class App extends Component {
     })
 
   }
+  deleteRoom=()=>{
+
+    console.log("Delete button")
+  }
 
   render() {
     return (
@@ -46,9 +52,18 @@ class App extends Component {
       <header className="App-header">
       <h1>Bloc Chat</h1>
       <nav>
-        <RoomList
-        firebase={firebase}
-        setRoom={this.setRoom} />
+      <Rooms
+      firebase={firebase}
+      setRoom={this.setRoom.bind(this)}
+      />
+      <RoomForm
+      firebase={firebase}
+      />
+      <DeleteRoom
+      firebase={firebase}
+      deleteRoom={this.deleteRoom.bind(this)}
+      activeRoom={this.state.activeRoom}
+      />
       </nav>
 
       </header>
