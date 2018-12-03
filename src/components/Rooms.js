@@ -17,7 +17,7 @@ class Rooms extends Component {
          const room = snapshot.val();
          room.key = snapshot.key;
          this.setState({ rooms: this.state.rooms.concat( room ) })
-
+         console.log(room.key + "Roomsssss key")
 
        });}
 
@@ -28,7 +28,7 @@ class Rooms extends Component {
        <div className="Rooms">
       {
         this.state.rooms.map((room, index) =>(
-        <Link className="RoomLinks" to={`/room/${room.roomId}`} key={room.key} onClick = {()=>this.props.setRoom(room.roomId)}>{room.roomId}</Link>
+        <Link className="RoomLinks" to={`/room/${room.roomId}`} key={room.key} onClick = {()=>this.props.setRoom(room.roomId, room.key)}>{room.roomId}</Link>
       ))
     }
     </div>

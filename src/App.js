@@ -25,13 +25,16 @@ class App extends Component {
     this.state = {
       activeRoom: " ",
       user:" ",
+      activeRoomKey:" ",
 
     };
+   this.roomsRef = firebase.database().ref('rooms');
   }
 
-  setRoom=(room)=>{
+  setRoom=(room, roomKey)=>{
+    
+    this.setState({activeRoom: room, activeRoomKey:roomKey})
 
-    this.setState({activeRoom: room})
 
   }
   setUser=(user)=>{
@@ -42,9 +45,10 @@ class App extends Component {
 
   }
   deleteRoom=()=>{
+   this.roomsRef.child(this.state.activeRoomKey).remove()
 
-    console.log("Delete button")
   }
+
 
   render() {
     return (
@@ -61,8 +65,8 @@ class App extends Component {
       />
       <DeleteRoom
       firebase={firebase}
+      activeRoomKey={this.state.activeRoomKey}
       deleteRoom={this.deleteRoom.bind(this)}
-      activeRoom={this.state.activeRoom}
       />
       </nav>
 
