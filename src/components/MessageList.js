@@ -42,8 +42,6 @@ componentDidUpdate = () => {
 
       <div className="MessageList" ref={(node) => (this.node = node)}>
       {
-
-
         this.state.messages
         .filter(message => {return this.props.activeRoom === message.roomId})
         .map((message, index) =>(
